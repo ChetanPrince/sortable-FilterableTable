@@ -10,3 +10,7 @@ body{
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
+table, h1{
+    width: 85%;
+    margin: 2rem;
+}
