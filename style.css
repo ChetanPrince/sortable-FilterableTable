@@ -9,8 +9,12 @@ body{
     flex-direction: column;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    background-color: rgba(127, 129, 255, 0.374);
 }
 table, h1{
     width: 85%;
     margin: 2rem;
+}
+table th{
+    border: 1px solid black;
 }
