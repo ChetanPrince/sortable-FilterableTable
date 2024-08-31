@@ -17,10 +17,16 @@ table, h1{
 }
 table th{
     border: 1px solid black;
+    padding: 5px;
+    margin: 16px;
 }
 table tr{
     border: 1px solid black;
     text-align: center;
-   
+   margin: 1px;
     background-color: rgba(0, 0, 255, 0.142);
+}
+.output{
+    width: 80%;
+
 }
