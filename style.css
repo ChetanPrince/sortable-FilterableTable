@@ -12,26 +12,36 @@ body{
     background-color: rgba(127, 129, 255, 0.374);
 }
 .container{
-    /* display: flex;
-    flex-direction: column; */
-    width: 100%;
-    /* gap: 10px;
-    justify-content: space-evenly; */
+    width: 95%;
 }
+table tr{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+/*
 .container tr{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
-table h1{
+h1{
     margin: 2rem;
+    text-align: center;
 }
 table th, tr, td{
     padding: 5px;
     text-align: center;
 }
-
+table{
+    border: 1px solid grey;
+}
 .output{
     width: 80%;
-
-}
+    } */
+    
+button{
+        width: 7rem;
+    }
