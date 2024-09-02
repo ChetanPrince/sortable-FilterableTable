@@ -11,10 +11,10 @@
 
 
 
-const button = document.getElementsByTagName("button");
+const button = document.getElementsByTagName("button")[0];
 button.addEventListener("click", ()=>{
 
-    const table = document.querySelector(".output, tbody[0]");
+    const table = document.querySelector(".output tbody");
     const tr = document.createElement("tr");
     tr.innerHTML = `<td>Item1</td><td>item2</td><td>item3</td><td>item4</td>`
     table.appendChild(tr);
