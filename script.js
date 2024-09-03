@@ -23,3 +23,13 @@ button.addEventListener("click", ()=>{
     // <td>${input[2]}</td>
     // <td>${input[3]}</td>`
 })
+
+
+function getData(){
+    return{
+        name: document.getElementById("studentName").value,
+        studentRollNo: document.getElementById("studentRollNo").value,
+        studentRanking: document.getElementById("studentRanking").value,
+        studentGrade: document.getElementById("studentGrade").value
+    };
+}
