@@ -1,15 +1,3 @@
-//  look for an api to search for this sort of data after clicking search button
-        // In this case user will search for a country Name and directly search for that item through api 
-        
-
-//  and upon retreiving then after clicking add button the data should be saved in local storage
-
-    //then the data should have headings exact matching to the retreived data which means either i should have th already mentioned after reading apu docs or those should dynamically be added if api suggests so doing 
-
-//  then on each heading for each method add an event listener and upon click the function should reflect so each button will have its functionality so if else statements will guide the user 
-
-
-
 const button = document.getElementsByTagName("button")[0];
 button.addEventListener("click", ()=>{
     const formData = getData();
