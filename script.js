@@ -10,19 +10,15 @@
 
 
 
-
 const button = document.getElementsByTagName("button")[0];
 button.addEventListener("click", ()=>{
+    const formData = getData();
 
     const table = document.querySelector(".output tbody");
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>Item1</td><td>item2</td><td>item3</td><td>item4</td>`
+    tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td>`
     table.appendChild(tr);
-    // tr.innerHTML= `<td>${input[0]}</td>
-    // <td>${input[1]}</td>
-    // <td>${input[2]}</td>
-    // <td>${input[3]}</td>`
-})
+});
 
 
 function getData(){
