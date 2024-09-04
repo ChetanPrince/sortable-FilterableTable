@@ -5,8 +5,8 @@ button.addEventListener("click", ()=>{
     const tr = document.createElement("tr");
     tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td>`
     table.appendChild(tr);
+    saveData(formData);
     clearData();
-    saveData();
 });
 
 
@@ -25,6 +25,20 @@ function clearData(){
     document.getElementById("studentGrade").value = "";
 }
 function saveData(){
-    let tr = document.querySelector(".output").getElementsByTagName("tbody")[0];
-    
+  let savedData = JSON.parse(localStorage.getItem("studentData"))|| [];
+  savedData.push(formData);
+  localStorage.setItem("studentData", JSON.stringify(savedData));
 }
+
+function loadData(){
+    const savedData = JSON.parse(localStorage.getItem("studentData")) || [];
+    const table = document.querySelector(".output tbody");
+    savedData.forEach((data)=>{
+        const tr = document.createElement("tr");
+        tr.innerHTML - `<td>${data.name}</td><td>${data.studentRollNo}</td><td>${data.studentRanking}</td><td>${data.studentGrade}</td>`;
+        table.appendChild(tr);
+    
+});}
+
+
+window.onload = loadData;
