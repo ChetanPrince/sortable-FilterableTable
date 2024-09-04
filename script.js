@@ -26,4 +26,5 @@ function clearData(){
 }
 function saveData(){
     let tr = document.querySelector(".output").getElementsByTagName("tbody")[0];
+    
 }
