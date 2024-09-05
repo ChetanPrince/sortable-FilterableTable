@@ -19,6 +19,8 @@ table tr{
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    border: 1px solid black;
+    margin-top: 2px;
 }
    
 button{
