@@ -24,7 +24,7 @@ function clearData(){
     document.getElementById("studentRanking").value="";
     document.getElementById("studentGrade").value = "";
 }
-function saveData(){
+function saveData(formData){
   let savedData = JSON.parse(localStorage.getItem("studentData"))|| [];
   savedData.push(formData);
   localStorage.setItem("studentData", JSON.stringify(savedData));
@@ -35,7 +35,7 @@ function loadData(){
     const table = document.querySelector(".output tbody");
     savedData.forEach((data)=>{
         const tr = document.createElement("tr");
-        tr.innerHTML - `<td>${data.name}</td><td>${data.studentRollNo}</td><td>${data.studentRanking}</td><td>${data.studentGrade}</td>`;
+        tr.innerHTML = `<td>${data.name}</td><td>${data.studentRollNo}</td><td>${data.studentRanking}</td><td>${data.studentGrade}</td>`;
         table.appendChild(tr);
     
 });}
