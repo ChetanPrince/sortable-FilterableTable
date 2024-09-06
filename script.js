@@ -3,10 +3,20 @@ button.addEventListener("click", ()=>{
     const formData = getData();
     const table = document.querySelector(".output tbody");
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td>`
-    table.appendChild(tr);
-    saveData(formData);
-    clearData();
+    const inputs = document.querySelectorAll(".container input");
+    inputs.forEach(input=>{
+        console.log(typeof input.value);
+
+        // if(input.value === null){
+        //     alert("kindly fill the required fields");
+        // }
+        // else{
+        //     tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td><td><button onclick="edit()">Edit</button></td><td><button onclick="deleteRow">Delete</button></td>`
+        //     table.appendChild(tr);
+        //     saveData(formData);
+        //     clearData();
+        // }
+    })
 });
 
 
@@ -24,21 +34,21 @@ function clearData(){
     document.getElementById("studentRanking").value="";
     document.getElementById("studentGrade").value = "";
 }
-function saveData(formData){
-  let savedData = JSON.parse(localStorage.getItem("studentData"))|| [];
-  savedData.push(formData);
-  localStorage.setItem("studentData", JSON.stringify(savedData));
-}
+// function saveData(formData){
+//   let savedData = JSON.parse(localStorage.getItem("studentData"))|| [];
+//   savedData.push(formData);
+//   localStorage.setItem("studentData", JSON.stringify(savedData));
+// }
 
-function loadData(){
-    const savedData = JSON.parse(localStorage.getItem("studentData")) || [];
-    const table = document.querySelector(".output tbody");
-    savedData.forEach((data)=>{
-        const tr = document.createElement("tr");
-        tr.innerHTML = `<td>${data.name}</td><td>${data.studentRollNo}</td><td>${data.studentRanking}</td><td>${data.studentGrade}</td>`;
-        table.appendChild(tr);
+// function loadData(){
+//     const savedData = JSON.parse(localStorage.getItem("studentData")) || [];
+//     const table = document.querySelector(".output tbody");
+//     savedData.forEach((data)=>{
+//         const tr = document.createElement("tr");
+//         tr.innerHTML = `<td>${data.name}</td><td>${data.studentRollNo}</td><td>${data.studentRanking}</td><td>${data.studentGrade}</td>`;
+//         table.appendChild(tr);
     
-});}
+// });}
 
 
-window.onload = loadData;
+// window.onload = loadData;
