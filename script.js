@@ -20,7 +20,7 @@ button.addEventListener("click", ()=>{
     // If all fields are filled, proceed to add the data to the table
     const table = document.querySelector(".output tbody");
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td>`;
+    tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td><td><button onclick="edit()">Edit</button></td><td><button onclick="deleteRow">Delete</button></td>`;
     table.appendChild(tr);
 
     // Save the data and clear the form
@@ -62,3 +62,7 @@ function loadData(){
 }
 
 window.onload = loadData;
+
+
+
+
