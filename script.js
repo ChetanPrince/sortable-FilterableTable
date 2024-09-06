@@ -1,3 +1,7 @@
+// So far problem is the data needs to check whether inputs are empty if are then submit button should show an error and if are filled then should proceed with saving and then onwards
+
+
+
 const button = document.getElementsByTagName("button")[0];
 button.addEventListener("click", ()=>{
     const formData = getData();
@@ -7,15 +11,15 @@ button.addEventListener("click", ()=>{
     inputs.forEach(input=>{
         console.log(typeof input.value);
 
-        // if(input.value === null){
-        //     alert("kindly fill the required fields");
-        // }
-        // else{
-        //     tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td><td><button onclick="edit()">Edit</button></td><td><button onclick="deleteRow">Delete</button></td>`
-        //     table.appendChild(tr);
-        //     saveData(formData);
-        //     clearData();
-        // }
+        if(input.value === ""){
+            alert("kindly fill the required fields");
+        }
+        else{
+            tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td><td><button onclick="edit()">Edit</button></td><td><button onclick="deleteRow">Delete</button></td>`
+            table.appendChild(tr);
+            saveData(formData);
+            clearData();
+        }
     })
 });
 
