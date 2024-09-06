@@ -8,19 +8,22 @@ button.addEventListener("click", ()=>{
     const table = document.querySelector(".output tbody");
     const tr = document.createElement("tr");
     const inputs = document.querySelectorAll(".container input");
-    inputs.forEach(input=>{
-        console.log(typeof input.value);
+    if(inputs.value === null){
+        alert("Kindly Fill The Required Fields");
+    }
+    // inputs.forEach(input=>{
+    //     console.log(typeof input.value);
 
-        if(input.value === ""){
-            alert("kindly fill the required fields");
-        }
-        else{
-            tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td><td><button onclick="edit()">Edit</button></td><td><button onclick="deleteRow">Delete</button></td>`
-            table.appendChild(tr);
-            saveData(formData);
-            clearData();
-        }
-    })
+    //     if(input.value === ""){
+    //         alert("kindly fill the required fields");
+    //     }
+    //     else{
+    //         tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td><td><button onclick="edit()">Edit</button></td><td><button onclick="deleteRow">Delete</button></td>`
+    //         table.appendChild(tr);
+    //         saveData(formData);
+    //         clearData();
+    //     }
+    // })
 });
 
 
