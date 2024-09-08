@@ -11,16 +11,23 @@ body{
     flex-wrap: wrap;
     background-color: rgba(127, 129, 255, 0.374);
 }
-.container{
+.container, .output{
     width: 95%;
 }
 table tr{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     border: 1px solid black;
     margin-top: 2px;
+}
+table th, td{
+    /* max-width: fit-content; */
+    /* border: 1px solid grey; */
+    align-items: left;
+    width: 10%;
+
 }
    
 button{
