@@ -20,7 +20,7 @@ button.addEventListener("click", ()=>{
     // If all fields are filled, proceed to add the data to the table
     const table = document.querySelector(".output tbody");
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td><td><button onclick="edit(this)">Edit</button></td><td><button onclick="deleteRow(this)">Delete</button></td>`;
+    tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td><td><button onclick="edit(this)">Edit</button></td><td><button onclick="deleteRow(this, "${formData.studentRollNo}")">Delete</button></td>`;
     table.appendChild(tr);
 
     // Save the data and clear the form
@@ -56,7 +56,7 @@ function loadData(){
     const table = document.querySelector(".output tbody");
     savedData.forEach((data)=>{
         const tr = document.createElement("tr");
-        tr.innerHTML = `<td>${data.name}</td><td>${data.studentRollNo}</td><td>${data.studentRanking}</td><td>${data.studentGrade}</td><td><button onclick="edit(this)">Edit</button></td><td><button onclick="deleteRow(this)">Delete</button></td>`;
+        tr.innerHTML = `<td>${data.name}</td><td>${data.studentRollNo}</td><td>${data.studentRanking}</td><td>${data.studentGrade}</td><td><button onclick="edit(this)">Edit</button></td><td><button onclick="deleteRow(this, "${formData.studentRollNo}")">Delete</button></td>`;
         table.appendChild(tr);
     });
 }
@@ -67,7 +67,14 @@ window.onload = loadData;
 function deleteRow(td){
     let selectedRow = td.parentElement.parentElement;
     selectedRow.remove();
-    selectedRow = null;
+    
+    let saveData = JSON.parse(localStorage.getItem("studentData")) || [];
+
+    // Filter out the deleted item by studentRollNo
+    const updatedData = saveData.filter(data => data.studentRollNo !== studentRollNo);
+
+    //  Save the updated data back to localStorage
+    localStorage.setItem("studentData", JSON.stringify(updatedData));
 }
 
 
