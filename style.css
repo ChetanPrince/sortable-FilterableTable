@@ -9,7 +9,7 @@ body{
     flex-direction: column;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    background-color: rgba(127, 129, 255, 0.374);
+    background-color: rgba(21, 102, 95, 0);
 }
 .container, .output{
     width: 85%;
@@ -30,18 +30,20 @@ table tr{
     gap: 10px;
 
 }
-.container td{
-    /* background-color: black; */
-    /* padding: 1%; */
+.container input{
+    background-color: rgba(0, 0, 0, 0.603);
+    padding: 10%;
     align-items: left;
-
+    color: white;
+    width: 95%;
+}
+.container input::placeholder{
+    color: white;
 }
 .output th, .output td{
-
     align-items: left;
     width: 10%;
     margin-left: 2%;
-
 }
    
 button{
@@ -49,8 +51,8 @@ button{
         border: none;
         border-radius: 10px;
         background-color: transparent;
-        font-weight: 600;
-        margin-top: 1rem;
+        font-weight: 900;
+        /* margin-top: 1rem; */
         font-size: 1rem;
         padding: 10px;
         cursor: pointer;
