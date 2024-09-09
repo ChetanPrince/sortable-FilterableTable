@@ -12,21 +12,35 @@ body{
     background-color: rgba(127, 129, 255, 0.374);
 }
 .container, .output{
-    width: 95%;
+    width: 85%;
+    margin-left: 5%;
 }
 table tr{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    /* justify-content: space-evenly; */
     border: 1px solid black;
     margin-top: 2px;
 }
-table th, td{
-    /* max-width: fit-content; */
-    /* border: 1px solid grey; */
+.container tr{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+
+}
+.container td{
+    /* background-color: black; */
+    /* padding: 1%; */
+    align-items: left;
+
+}
+.output th, .output td{
+
     align-items: left;
     width: 10%;
+    margin-left: 2%;
 
 }
    
