@@ -78,3 +78,16 @@ function deleteRow(td, studentRollNo){
     // Save the updated data back to localStorage
     localStorage.setItem("studentData", JSON.stringify(updatedData));
 }
+
+function sort(){
+
+}
+
+
+const filterButton = document.getElementById("filter");
+filterButton.addEventListener("click",()=>{
+    
+})
+function filter(){
+
+}
