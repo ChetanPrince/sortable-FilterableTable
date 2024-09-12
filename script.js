@@ -90,6 +90,9 @@ function deleteRow(td, studentRollNo){
 
 
 function sort(){
+let tableHead = document.querySelector(".output").getElementsByTagName("tbody")[0];
+
+
 
 }
 
