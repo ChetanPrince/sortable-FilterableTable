@@ -60,7 +60,13 @@ function loadData(){
         table.appendChild(tr);
     });
 }
-
+function edit(td){
+    let selectedRow = td.parentElement.parentElement;
+    document.getElementById("studentName").value = "";
+    document.getElementById("studentRollNo").value = "";
+    document.getElementById("studentRanking").value = "";
+    document.getElementById("studentGrade").value = "";
+}
 window.onload = loadData;
 
 // Delete row and corresponding data from localStorage
@@ -82,21 +88,21 @@ function deleteRow(td, studentRollNo){
 
 // In this sort function we need to grab th elements and upon click an ascending or descending order method has to be used on the same index of the td element and an arrow showing whether it is an ascending order or descending order data is should be displayed
 
-// first step grab th elements and add event listener 
-// second step check which tag is clicked and what is its index
-// then loop through corresponding index in td elements and then apply method on those by adding them first in an array and then method on that array
-// simaltenously display that arranged array in td format and its corresponding data
 
 
 
 function sort(){
-let tableHead = document.querySelector(".output").getElementsByTagName("tbody")[0];
-
-
-
+    let tableHead = document.querySelector(".output").getElementsByTagName("tbody")[0];
+    
+    
+    
 }
 
 
+// first step grab th elements and add event listener 
+// second step check which tag is clicked and what is its index
+// then loop through corresponding index in td elements and then apply method on those by adding them first in an array and then method on that array
+// simaltenously display that arranged array in td format and its corresponding data
 
 
 // filter function will grab what item has to be filtered through input 
