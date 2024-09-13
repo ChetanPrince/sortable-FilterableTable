@@ -11,19 +11,17 @@ button.addEventListener("click", ()=>{
         }
     });
 
-    // Show alert if any input is empty
+    
     if (!allFieldsFilled) {
         alert("Kindly fill in all the required fields.");
-        return; // Stop here, don't proceed
+        return; //
     }
-
-    // If all fields are filled, proceed to add the data to the table
     const table = document.querySelector(".output tbody");
     const tr = document.createElement("tr");
     tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td><td><button onclick="edit(this)">Edit</button></td><td><button onclick="deleteRow(this, '${formData.studentRollNo}')">Delete</button></td>`;
     table.appendChild(tr);
 
-    // Save the data and clear the form
+
     saveData(formData);
     clearData();
 });
@@ -70,30 +68,38 @@ function edit(td){
 }
 window.onload = loadData;
 
-// Delete row and corresponding data from localStorage
 function deleteRow(td, studentRollNo){
-    // Remove the selected row from the table
     let selectedRow = td.parentElement.parentElement;
     selectedRow.remove();
-
-    // Remove the corresponding data from localStorage
     let savedData = JSON.parse(localStorage.getItem("studentData")) || [];
     
-    // Filter out the deleted item by studentRollNo
     const updatedData = savedData.filter(data => data.studentRollNo !== studentRollNo);
     
-    // Save the updated data back to localStorage
     localStorage.setItem("studentData", JSON.stringify(updatedData));
 }
 
 
-// In this sort function we need to grab th elements and upon click an ascending or descending order method has to be used on the same index of the td element and an arrow showing whether it is an ascending order or descending order data is should be displayed
+document.querySelectorAll("th").forEach((th, index)=>{
+    th.addEventListener("click", ()=> sort(index));
+})
 
+function sort(columnIndex){
+    let table = document.querySelector(".ouput tbody");
+    const rows = Array.from(table.rows);
+    let isAscending = table.getAttribute("data-sort-order") === "asc";
 
-
-
-function sort(){
-    let tableHead = document.querySelector(".output").getElementsByTagName("tbody")[0];
+    rows.sort((rowA, rowB)=>{
+        const cellA = rowA.cells[columnIndex].innerText.trim();
+        const cellB = rowB.cells[columnIndex].innerText.trim();
+        if(!isNaN(cellA) && !isNaN(cellB)){
+            return isAscending? cellA - cellB: cellB-cellA;        }
+            return isAscending? cellA.localCompare(cellB): cellB.localeCompare(cellA);
+    });
+    table.innerHTML = "";
+    rows.forEach(row=>table.appendChild(row));
+    table.setAttribute("data-sort-order", isAscending ? "desc": "asc");
+     const header = document.querySelectorAll("th")[columnIndex];
+     header.innerHTML = header.innerHTML + (isAscending ?  " ↓" : " ↑");
     
     
     
