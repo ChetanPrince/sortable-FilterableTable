@@ -62,10 +62,11 @@ function loadData(){
 }
 function edit(td){
     let selectedRow = td.parentElement.parentElement;
-    document.getElementById("studentName").value = "";
-    document.getElementById("studentRollNo").value = "";
-    document.getElementById("studentRanking").value = "";
-    document.getElementById("studentGrade").value = "";
+    console.log(typeof(selectedRow.cells[0].innerHTML));
+    document.getElementById("studentName").value = selectedRow.cells[0].innerHTML;
+    document.getElementById("studentRollNo").value = selectedRow.cells[1].innerHTML;
+    document.getElementById("studentRanking").value = selectedRow.cells[2].innerHTML;
+    document.getElementById("studentGrade").value = selectedRow.cells[3].innerHTML;
 }
 window.onload = loadData;
 
@@ -110,10 +111,10 @@ function sort(){
 // and then it check in that index whether it is present and if then display in the same order it finds out in the index
 
 
-const filterButton = document.getElementById("filter");
-filterButton.addEventListener("click",()=>{
+// const filterButton = document.getElementById("filter");
+// filterButton.addEventListener("click",()=>{
 
-})
-function filter(){
+// })
+// function filter(){
 
-}
+// }
