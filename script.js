@@ -60,7 +60,6 @@ function loadData(){
 }
 function edit(td){
     let selectedRow = td.parentElement.parentElement;
-    console.log(typeof(selectedRow.cells[0].innerHTML));
     document.getElementById("studentName").value = selectedRow.cells[0].innerHTML;
     document.getElementById("studentRollNo").value = selectedRow.cells[1].innerHTML;
     document.getElementById("studentRanking").value = selectedRow.cells[2].innerHTML;
@@ -84,7 +83,7 @@ document.querySelectorAll("th").forEach((th, index)=>{
 })
 
 function sort(columnIndex){
-    let table = document.querySelector(".ouput tbody");
+    let table = document.querySelector(".output tbody");
     const rows = Array.from(table.rows);
     let isAscending = table.getAttribute("data-sort-order") === "asc";
 
@@ -93,17 +92,19 @@ function sort(columnIndex){
         const cellB = rowB.cells[columnIndex].innerText.trim();
         if(!isNaN(cellA) && !isNaN(cellB)){
             return isAscending? cellA - cellB: cellB-cellA;        }
-            return isAscending? cellA.localCompare(cellB): cellB.localeCompare(cellA);
+            return isAscending? cellA.localeCompare(cellB): cellB.localeCompare(cellA);
     });
     table.innerHTML = "";
     rows.forEach(row=>table.appendChild(row));
     table.setAttribute("data-sort-order", isAscending ? "desc": "asc");
-     const header = document.querySelectorAll("th")[columnIndex];
-     header.innerHTML = header.innerHTML + (isAscending ?  " ↓" : " ↑");
+     const headers = document.querySelectorAll("th");
+     headers.forEach(header=>
+        header.innerHTML = header.innerHTML.replace(/↑|↓/, ""));
+        headers[columnIndex].innerHTML +=isAscending?  " ↓" : " ↑"}
+        
     
     
     
-}
 
 
 // first step grab th elements and add event listener 
