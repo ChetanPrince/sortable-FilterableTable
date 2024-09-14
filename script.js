@@ -1,6 +1,23 @@
 const button = document.getElementsByTagName("button")[0];
 button.addEventListener("click", ()=>{
-    const formData = getData();
+let formData = getData();
+let selectedRow = null;
+
+if(selectedRow === null){
+    saveData(formData);
+}
+else{
+    updateData(formData);
+    selectedRow = null;
+}
+clearData();
+
+
+
+});
+
+
+    function saveData(){
     const inputs = document.querySelectorAll(".container input");
     let allFieldsFilled = true;
 
@@ -20,11 +37,7 @@ button.addEventListener("click", ()=>{
     const tr = document.createElement("tr");
     tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td><td><button onclick="edit(this)">Edit</button></td><td><button onclick="deleteRow(this, '${formData.studentRollNo}')">Delete</button></td>`;
     table.appendChild(tr);
-
-
-    saveData(formData);
-    clearData();
-});
+}
 
 
 function getData(){
