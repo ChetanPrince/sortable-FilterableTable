@@ -1,7 +1,7 @@
 let selectedRow = null;
 const button = document.getElementById("submit");
-button.addEventListener("click", ()=>{
-    // e.preventDefault();
+button.addEventListener("click", (e)=>{
+    e.preventDefault();
 let formData = getData();
 const inputs = document.querySelectorAll(".container input");
     // inititalized all values filled at first
@@ -121,3 +121,16 @@ function loadData(){
     });
 }
         
+document.getElementById("filter").addEventListener("input", filterData);
+
+
+function filterData(){
+const filterInput = document.getElementById("filterInput").value.toLowerCase();
+const rows = document.querySelectorAll(".output tbody tr");
+rows.forEach((row)=>{
+    const rowData = Array.from(row.cells).map(cell => cell.innerText.toLowerCase());
+        const matchesFilter = rowData.some(data => data.includes(filterInput));
+    row.computedStyleMap.display = matchesFilter? "": "none";
+});
+
+}
