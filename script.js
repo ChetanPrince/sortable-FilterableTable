@@ -121,16 +121,45 @@ function loadData(){
     });
 }
         
-document.getElementById("filter").addEventListener("input", filterData);
+document.getElementById("filter").addEventListener("click", filterData);
 
+function filterData() {
+    // Define a map for field names and corresponding column index
+    const filterMap = {
+        "nameFilter": 0,       // Name is in the first column
+        "rollNoFilter": 1,     // Roll No is in the second column
+        "rankingFilter": 2,    // Ranking is in the third column
+        "gradeFilter": 3       // Grade is in the fourth column
+    };
 
-function filterData(){
-const filterInput = document.getElementById("filterInput").value.toLowerCase();
-const rows = document.querySelectorAll(".output tbody tr");
-rows.forEach((row)=>{
-    const rowData = Array.from(row.cells).map(cell => cell.innerText.toLowerCase());
-        const matchesFilter = rowData.some(data => data.includes(filterInput));
-    row.computedStyleMap.display = matchesFilter? "": "none";
-});
+    // Get all input fields
+    const inputs = {
+        nameFilter: document.getElementById("studentName").value.toLowerCase(),
+        rollNoFilter: document.getElementById("studentRollNo").value.toLowerCase(),
+        rankingFilter: document.getElementById("studentRanking").value.toLowerCase(),
+        gradeFilter: document.getElementById("studentGrade").value.toLowerCase(),
+    };
 
+    // Get all table rows
+    const rows = document.querySelectorAll(".output tbody tr");
+
+    // Loop through each row to check if it matches the filters
+    rows.forEach((row) => {
+        const rowData = Array.from(row.cells).map(cell => cell.innerText.toLowerCase());
+
+        let matchesFilter = true;
+
+        // Loop through each input, check the corresponding column if the input has a value
+        for (let filter in inputs) {
+            const inputValue = inputs[filter];
+            if (inputValue !== "") {
+                const columnIndex = filterMap[filter];
+                // Check if the row's data in this column matches the input value
+                matchesFilter = matchesFilter && rowData[columnIndex].includes(inputValue);
+            }
+        }
+
+        // Show or hide the row based on the filter criteria
+        row.style.display = matchesFilter ? "" : "none";
+    });
 }
