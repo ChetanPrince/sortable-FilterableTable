@@ -30,6 +30,9 @@ table tr{
     gap: 10px;
 
 }
+.output th{
+    cursor: pointer;
+}
 .container input{
     background-color: rgba(0, 0, 0, 0.603);
     padding: 10%;
