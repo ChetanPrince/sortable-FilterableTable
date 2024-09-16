@@ -24,7 +24,7 @@ table tr{
 }
 hr{
     border: 1px solid black;
-    margin: 10px;
+    margin: 2rem;
 }
 .container tr{
     display: flex;
@@ -35,7 +35,9 @@ hr{
 
 }
 .output{
-    background-color: rgba(128, 128, 128, 0.212);
+    background-color: rgba(128, 128, 128, 0.136);
+    box-shadow: 4px 4px 10px rgb(169, 123, 131);
+    
 }
 .output th{
     cursor: pointer;
