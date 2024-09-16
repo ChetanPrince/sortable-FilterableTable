@@ -48,15 +48,24 @@ hr{
     align-items: left;
     color: white;
     width: 95%;
+    text-wrap: no-wrap;
 }
+
+
+/* input field placeholder had to be set as wrapped text so that data shopuld be visible only if data is squeezed inside the area when it is on the smaller screen */
 .container input::placeholder{
     color: white;
+    text-wrap: wrap;
+
 }
 .output th, .output td{
     align-items: left;
     width: 10%;
     margin-left: 2%;
 }
+
+
+
    
 button{
         width: 7rem;
