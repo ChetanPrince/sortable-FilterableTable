@@ -20,14 +20,7 @@ const inputs = document.querySelectorAll(".container input");
     }
 
 if(selectedRow === null){
-    let uniqueId = document.getElementById("studentRollNo").value;
-    let table = document.querySelector(".output tbody");
-
-    if(!table.contains(uniqueId)){
-        saveData(formData);
-    }else{
-        alert("Student data already exists. kindly edit or remove previous record to add new.")
-    }
+            saveData(formData);
 }
 else{
     updateData(formData);
@@ -71,8 +64,8 @@ function updateData(formData){
     selectedRow.cells[1].innerHTML = formData["studentRollNo"];
     selectedRow.cells[2].innerHTML = formData["studentRanking"];
     selectedRow.cells[3].innerHTML = formData["studentGrade"];
-    selectedRow.cells[3].innerHTML = formData["studentAttendance"];
-    selectedRow.cells[3].innerHTML = formData["studentMarks"];
+    selectedRow.cells[4].innerHTML = formData["studentAttendance"];
+    selectedRow.cells[5].innerHTML = formData["studentMarks"];
     let savedData = JSON.parse(localStorage.getItem("studentData")) || [];
     const updatedData = savedData.filter(data => data.studentRollNo !== formData["studentRollNo"]);
     updatedData.push(formData);
@@ -86,8 +79,8 @@ function edit(td){
     document.getElementById("studentRollNo").value = selectedRow.cells[1].innerHTML;
     document.getElementById("studentRanking").value = selectedRow.cells[2].innerHTML;
     document.getElementById("studentGrade").value = selectedRow.cells[3].innerHTML;
-    document.getElementById("studentAttendance").value = selectedRow.cells[3].innerHTML;
-    document.getElementById("studentMarks").value = selectedRow.cells[3].innerHTML;
+    document.getElementById("studentAttendance").value = selectedRow.cells[4].innerHTML;
+    document.getElementById("studentMarks").value = selectedRow.cells[5].innerHTML;
 }
 
 
