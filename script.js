@@ -33,14 +33,16 @@ function getData(){
         name: document.getElementById("studentName").value,
         studentRollNo: document.getElementById("studentRollNo").value,
         studentRanking: document.getElementById("studentRanking").value,
-        studentGrade: document.getElementById("studentGrade").value
+        studentGrade: document.getElementById("studentGrade").value,
+        studentAttendance: document.getElementById("studentAttendance").value,
+        studentMarks: document.getElementById("studentMarks").value
     };
 }
 
 function saveData(formData){
     const table = document.querySelector(".output tbody");
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td><td><button onclick="edit(this)">Edit</button></td><td><button onclick="deleteRow(this, '${formData.studentRollNo}')">Delete</button></td>`;
+    tr.innerHTML = `<td>${formData.name}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td><td>${formData.studentAttendance}%</td><td>${formData.studentMarks}</td><td><button onclick="edit(this)">Edit</button></td><td><button onclick="deleteRow(this, '${formData.studentRollNo}')">Delete</button></td>`;
     table.appendChild(tr);
     let savedData = JSON.parse(localStorage.getItem("studentData")) || [];
     savedData.push(formData);
@@ -52,6 +54,8 @@ function clearData(){
     document.getElementById("studentRollNo").value = "";
     document.getElementById("studentRanking").value = "";
     document.getElementById("studentGrade").value = "";
+    document.getElementById("studentAttendance").value = "";
+    document.getElementById("studentMarks").value = "";
 }
 
 
@@ -60,6 +64,8 @@ function updateData(formData){
     selectedRow.cells[1].innerHTML = formData["studentRollNo"];
     selectedRow.cells[2].innerHTML = formData["studentRanking"];
     selectedRow.cells[3].innerHTML = formData["studentGrade"];
+    selectedRow.cells[3].innerHTML = formData["studentAttendance"];
+    selectedRow.cells[3].innerHTML = formData["studentMarks"];
     let savedData = JSON.parse(localStorage.getItem("studentData")) || [];
     const updatedData = savedData.filter(data => data.studentRollNo !== formData["studentRollNo"]);
     updatedData.push(formData);
@@ -73,6 +79,8 @@ function edit(td){
     document.getElementById("studentRollNo").value = selectedRow.cells[1].innerHTML;
     document.getElementById("studentRanking").value = selectedRow.cells[2].innerHTML;
     document.getElementById("studentGrade").value = selectedRow.cells[3].innerHTML;
+    document.getElementById("studentAttendance").value = selectedRow.cells[3].innerHTML;
+    document.getElementById("studentMarks").value = selectedRow.cells[3].innerHTML;
 }
 
 
