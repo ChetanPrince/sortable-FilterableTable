@@ -20,7 +20,14 @@ const inputs = document.querySelectorAll(".container input");
     }
 
 if(selectedRow === null){
-    saveData(formData);
+    let uniqueId = document.getElementById("studentRollNo").value;
+    let table = document.querySelector(".output tbody");
+
+    if(!table.contains(uniqueId)){
+        saveData(formData);
+    }else{
+        alert("Student data already exists. kindly edit or remove previous record to add new.")
+    }
 }
 else{
     updateData(formData);
