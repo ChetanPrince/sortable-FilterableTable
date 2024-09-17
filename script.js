@@ -124,7 +124,7 @@ function loadData(){
     const table = document.querySelector(".output tbody");
     savedData.forEach((data) => {
         const tr = document.createElement("tr");
-        tr.innerHTML = `<td>${data.name}</td><td>${data.studentRollNo}</td><td>${data.studentRanking}</td><td>${data.studentGrade}</td><td><button onclick="edit(this)">Edit</button></td><td><button onclick="deleteRow(this, '${data.studentRollNo}')">Delete</button></td>`;
+        tr.innerHTML = `<td>${data.name}</td><td>${data.studentRollNo}</td><td>${data.studentRanking}</td><td>${data.studentGrade}</td><td>${formData.studentAttendance}</td><td>${formData.studentMarks}</td><td><button onclick="edit(this)">Edit</button></td><td><button onclick="deleteRow(this, '${data.studentRollNo}')">Delete</button></td>`;
         table.appendChild(tr);
     });
 }
@@ -137,7 +137,9 @@ function filterData() {
         "nameFilter": 0,       // Name is in the first column
         "rollNoFilter": 1,     // Roll No is in the second column
         "rankingFilter": 2,    // Ranking is in the third column
-        "gradeFilter": 3       // Grade is in the fourth column
+        "gradeFilter": 3,
+        "attendanceFilter":4,
+        "marks": 5       // Grade is in the fourth column
     };
 
     // Get all input fields
@@ -146,6 +148,8 @@ function filterData() {
         rollNoFilter: document.getElementById("studentRollNo").value.toLowerCase(),
         rankingFilter: document.getElementById("studentRanking").value.toLowerCase(),
         gradeFilter: document.getElementById("studentGrade").value.toLowerCase(),
+        attendanceFilter: document.getElementById("studentAttendance").value.toLowerCase(),
+        marksFilter: document.getElementById("studentMarks").value.toLowerCase()
     };
 
     // Get all table rows
