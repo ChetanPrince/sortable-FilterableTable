@@ -31,7 +31,11 @@ const inputs = document.querySelectorAll(".container input");
     }
 
 if(selectedRow === null){
-            saveData(formData);
+    if(!studentRollNo === formData.studentRollNo){
+        saveData(formData);
+    }else{
+        alert("student Roll No should be changed as it already exists!")
+    }
 }
 else{
     updateData(formData);
