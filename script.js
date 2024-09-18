@@ -1,3 +1,14 @@
+window.onload = loadData;
+function loadData(){
+    const savedData = JSON.parse(localStorage.getItem("studentData")) || [];
+    const table = document.querySelector(".output tbody");
+    savedData.forEach((data) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${data.name}</td><td>${data.studentRollNo}</td><td>${data.studentRanking}</td><td>${data.studentGrade}</td><td>${data.studentAttendance}%</td><td>${data.studentMarks}</td><td><button onclick="edit(this)">Edit</button></td><td><button onclick="deleteRow(this, '${data.studentRollNo}')">Delete</button></td>`;
+        table.appendChild(tr);
+    });
+}
+        
 let selectedRow = null;
 const button = document.getElementById("submit");
 button.addEventListener("click", (e)=>{
@@ -79,7 +90,7 @@ function edit(td){
     document.getElementById("studentRollNo").value = selectedRow.cells[1].innerHTML;
     document.getElementById("studentRanking").value = selectedRow.cells[2].innerHTML;
     document.getElementById("studentGrade").value = selectedRow.cells[3].innerHTML;
-    document.getElementById("studentAttendance").value = selectedRow.cells[4].innerHTML;
+    document.getElementById("studentAttendance").value = selectedRow.cells[4].innerHTML.replace("%", "");
     document.getElementById("studentMarks").value = selectedRow.cells[5].innerHTML;
 }
 
@@ -118,17 +129,7 @@ function sort(columnIndex){
         header.innerHTML = header.innerHTML.replace(/↑|↓/, ""));
         headers[columnIndex].innerHTML +=isAscending?  " ↓" : " ↑"}
 
-        window.onload = loadData;
-function loadData(){
-    const savedData = JSON.parse(localStorage.getItem("studentData")) || [];
-    const table = document.querySelector(".output tbody");
-    savedData.forEach((data) => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `<td>${data.name}</td><td>${data.studentRollNo}</td><td>${data.studentRanking}</td><td>${data.studentGrade}</td><td>${formData.studentAttendance}</td><td>${formData.studentMarks}</td><td><button onclick="edit(this)">Edit</button></td><td><button onclick="deleteRow(this, '${data.studentRollNo}')">Delete</button></td>`;
-        table.appendChild(tr);
-    });
-}
-        
+       
 document.getElementById("filter").addEventListener("click", filterData);
 
 function filterData() {
@@ -137,9 +138,9 @@ function filterData() {
         "nameFilter": 0,       // Name is in the first column
         "rollNoFilter": 1,     // Roll No is in the second column
         "rankingFilter": 2,    // Ranking is in the third column
-        "gradeFilter": 3,
-        "attendanceFilter":4,
-        "marks": 5       // Grade is in the fourth column
+        "gradeFilter": 3,       // Grade is in the fourth column
+        "attendanceFilter": 4,  // Attebdance is in the fifth column
+        "marksFilter": 5              // Marks is in the sixth column
     };
 
     // Get all input fields
