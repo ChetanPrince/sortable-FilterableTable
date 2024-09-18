@@ -31,7 +31,9 @@ const inputs = document.querySelectorAll(".container input");
     }
 
 if(selectedRow === null){
-    if(!studentRollNo === formData.studentRollNo){
+    const savedData = JSON.parse(localStorage.getItem("studentData")) || [];
+    const rollNoExists = savedData.some(data=> data.studentRollNo === formData.studentRollNo);
+    if(!rollNoExists){
         saveData(formData);
     }else{
         alert("student Roll No should be changed as it already exists!")
