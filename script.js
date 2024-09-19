@@ -1,3 +1,4 @@
+let selectedRow = null;
 const btn = document.getElementById("submit");
 btn.addEventListener("click", (e)=>{
     e.preventDefault();
@@ -6,7 +7,7 @@ btn.addEventListener("click", (e)=>{
   const inputs = document.querySelectorAll(".container input");
   let allFieldsFilled = true;    //  go through each input to trim space before and after the content and says if conditino is empty that every input field is empty
   inputs.forEach(input=>{
-    if(input.ariaValueMax.trim()===""){
+    if(input.value.trim()===""){
         allFieldsFilled = false;
     }
 })
@@ -25,7 +26,7 @@ if(!allFieldsFilled){
     const rollNoExists = savedData.some(data=>data.studentRollNo === formData.studentRollNo);
     // then if condition check if not roll no exists exists then saveData function is applied or else alert is diplayed
     if(!rollNoExists){
-        savedData(formData);
+        saveData(formData);
     }else{
         alert("Student Roll No already exists");
 
@@ -36,3 +37,32 @@ if(!allFieldsFilled){
  }
  clearData();
 });
+
+function getData(){
+    return{
+        name: document.getElementById("studentName").value,
+        rollNo: document.getElementById("studentRollNo").value,
+        ranking: document.getElementById("studentRanking").value,
+        grade: document.getElementById("studentGrade").value,
+        attendance: document.getElementById("studentAttendance").value,
+        marks: document.getElementById("studentMarks").value
+    };
+}
+
+
+function saveData(formData){
+    const table = document.querySelector(".output tbody");
+    const tr  = document.createElement("tr");
+    tr.innerHTML = `<td>${formData.name}</td><td>${formData.rollNo}</td><td>${formData.ranking}</td><td>${formData.grade}</td><td>${formData.attendance}%</td><td>${formData.marks}</td><td id="edit" onClick="edit(this)"><button>Edit</button></td><td id="delete" onClick="deleteRow(this)"><button>delete</button></td>`;
+    table.appendChild(tr);
+    
+}
+function clearData(){
+    document.getElementById("studentName").value = "";
+    document.getElementById("studentRollNo").value="";
+    document.getElementById("studentRanking").value="";
+    document.getElementById("studentGrade").value="";
+    document.getElementById("studentAttendance").value="";
+    document.getElementById("studentMarks").value="";
+    
+}
