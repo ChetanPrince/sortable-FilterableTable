@@ -55,6 +55,11 @@ function saveData(formData){
     const tr  = document.createElement("tr");
     tr.innerHTML = `<td>${formData.name}</td><td>${formData.rollNo}</td><td>${formData.ranking}</td><td>${formData.grade}</td><td>${formData.attendance}%</td><td>${formData.marks}</td><td id="edit" onClick="edit(this)"><button>Edit</button></td><td id="delete" onClick="deleteRow(this)"><button>delete</button></td>`;
     table.appendChild(tr);
+let savedData = JSON.parse(localStorage.getItem("studentData"))||[];
+savedData.push(formData);
+localStorage.setItems("studentData", JSON.stringify(savedData));
+
+
     
 }
 function clearData(){
@@ -82,6 +87,10 @@ function updateData(formData){
     selectedRow.cells[3].innerHTML = formData.grade;
     selectedRow.cells[4].innerHTML = formData.attendance+"%";
     selectedRow.cells[5].innerHTML = formData.marks;
+    let savedData = JSON.parse(localStorage.getItem("studentData"))||[];
+    const updatedData = savedData.filter(data=>data.studentRollNo!==formData["studentRollNo"]);
+    updatedData.push(formData);
+    localStorage.setItem("studentData", JSON.stringify(updatedData));
     selectedRow = null;
 }
 function deleteRow(td){
@@ -92,4 +101,8 @@ function deleteRow(td){
     }
     console.log(selectedRow);
     selectedRow = null;
+}
+windows.onload=loadData;
+function loadData(){
+
 }
