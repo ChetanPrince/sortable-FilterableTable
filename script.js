@@ -68,20 +68,28 @@ function clearData(){
 function edit(td){
     selectedRow = td.parentElement;
     console.log(selectedRow);
-    // document.getElementById("studentName").value = selectedRow.cells[0].innerHTML;
     document.getElementById("studentName").value = selectedRow.cells[0].innerHTML;
     document.getElementById("studentRollNo").value=selectedRow.cells[1].innerHTML;
     document.getElementById("studentRanking").value=selectedRow.cells[2].innerHTML;
     document.getElementById("studentGrade").value=selectedRow.cells[3].innerHTML;
-    document.getElementById("studentAttendance").value=selectedRow.cells[4].innerHTML;
+    document.getElementById("studentAttendance").value=parseInt(selectedRow.cells[4].innerHTML);
     document.getElementById("studentMarks").value=selectedRow.cells[5].innerHTML;
 }
 function updateData(formData){
     selectedRow.cells[0].innerHTML = formData.name;
-    selectedRow.cells[0].innerHTML = formData.rollNo;
-    selectedRow.cells[0].innerHTML = formData.ranking;
-    selectedRow.cells[0].innerHTML = formData.grade;
-    selectedRow.cells[0].innerHTML = formData.attendance;
-    selectedRow.cells[0].innerHTML = formData.marks;
+    selectedRow.cells[1].innerHTML = formData.rollNo;
+    selectedRow.cells[2].innerHTML = formData.ranking;
+    selectedRow.cells[3].innerHTML = formData.grade;
+    selectedRow.cells[4].innerHTML = formData.attendance+"%";
+    selectedRow.cells[5].innerHTML = formData.marks;
+    selectedRow = null;
+}
+function deleteRow(td){
+    selectedRow = td.parentElement;
+    const table = document.querySelectorAll(".output tbody");
+    if(confirm("Are you sure you want to delete this record?")){  
+        selectedRow.remove();
+    }
+    console.log(selectedRow);
     selectedRow = null;
 }
