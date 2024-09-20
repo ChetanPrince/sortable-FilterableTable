@@ -64,5 +64,24 @@ function clearData(){
     document.getElementById("studentGrade").value="";
     document.getElementById("studentAttendance").value="";
     document.getElementById("studentMarks").value="";
-    
+}
+function edit(td){
+    selectedRow = td.parentElement;
+    console.log(selectedRow);
+    // document.getElementById("studentName").value = selectedRow.cells[0].innerHTML;
+    document.getElementById("studentName").value = selectedRow.cells[0].innerHTML;
+    document.getElementById("studentRollNo").value=selectedRow.cells[1].innerHTML;
+    document.getElementById("studentRanking").value=selectedRow.cells[2].innerHTML;
+    document.getElementById("studentGrade").value=selectedRow.cells[3].innerHTML;
+    document.getElementById("studentAttendance").value=selectedRow.cells[4].innerHTML;
+    document.getElementById("studentMarks").value=selectedRow.cells[5].innerHTML;
+}
+function updateData(formData){
+    selectedRow.cells[0].innerHTML = formData.name;
+    selectedRow.cells[0].innerHTML = formData.rollNo;
+    selectedRow.cells[0].innerHTML = formData.ranking;
+    selectedRow.cells[0].innerHTML = formData.grade;
+    selectedRow.cells[0].innerHTML = formData.attendance;
+    selectedRow.cells[0].innerHTML = formData.marks;
+    selectedRow = null;
 }
