@@ -49,3 +49,13 @@ function edit(td){
     
 
 }
+function updateData(formData){
+    console.log(formData.studentName)
+    selectedRow.cells[0].innerHTML = formData.studentName;
+    selectedRow.cells[1].innerHTML = formData.studentRollNo;
+    selectedRow.cells[2].innerHTML = formData.studentRanking;
+    selectedRow.cells[3].innerHTML = formData.studentGrade;
+    selectedRow.cells[4].innerHTML = formData.studentAttendance;
+    selectedRow.cells[5].innerHTML = formData.studentMarks;
+    selectedRow = null;
+}
