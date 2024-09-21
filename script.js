@@ -11,20 +11,13 @@ btn.addEventListener("click", (e)=>{
         allFieldsFilled = false;
     }
 })
-
-//  out of the loop conditio is checked if all fields are filled and then alert is displayed with return keyword
 if(!allFieldsFilled){
     alert("kindly fill the required fields");
     return;
 }
-
- // further condition is checked if selected row is null and emptu then savedData constant is parsed into local storage and get any data if is available or it is empty array
- 
- if(selectedRow === null){
+if(selectedRow === null){
     const savedData = JSON.parse(localStorage.getItem("studentData"))||[];
-    //  const rollNoExists check inside savedData amd .some method check if student roll no is equal to formDat.studentRollNo
     const rollNoExists = savedData.some(data=>data.studentRollNo === formData.studentRollNo);
-    // then if condition check if not roll no exists exists then saveData function is applied or else alert is diplayed
     if(!rollNoExists){
         saveData(formData);
     }else{
@@ -32,7 +25,6 @@ if(!allFieldsFilled){
 
     }
  }else{
-     //  else updateData function with formData is displayed and clearData function is executed
     updateData(formData);
  }
  clearData();
@@ -49,7 +41,6 @@ function getData(){
     };
 }
 
-
 function saveData(formData){
     const table = document.querySelector(".output tbody");
     const tr  = document.createElement("tr");
@@ -57,10 +48,7 @@ function saveData(formData){
     table.appendChild(tr);
 let savedData = JSON.parse(localStorage.getItem("studentData"))||[];
 savedData.push(formData);
-localStorage.setItems("studentData", JSON.stringify(savedData));
-
-
-    
+localStorage.setItem("studentData", JSON.stringify(savedData));
 }
 function clearData(){
     document.getElementById("studentName").value = "";
@@ -88,21 +76,34 @@ function updateData(formData){
     selectedRow.cells[4].innerHTML = formData.attendance+"%";
     selectedRow.cells[5].innerHTML = formData.marks;
     let savedData = JSON.parse(localStorage.getItem("studentData"))||[];
-    const updatedData = savedData.filter(data=>data.studentRollNo!==formData["studentRollNo"]);
+    const updatedData = savedData.filter(data=>data.rollNo!==formData["rollNo"]);
     updatedData.push(formData);
     localStorage.setItem("studentData", JSON.stringify(updatedData));
     selectedRow = null;
 }
-function deleteRow(td){
-    selectedRow = td.parentElement;
-    const table = document.querySelectorAll(".output tbody");
+function deleteRow(td, rollNo){
+   let selectedRow = td.parentElement.parentElement;
     if(confirm("Are you sure you want to delete this record?")){  
         selectedRow.remove();
     }
-    console.log(selectedRow);
-    selectedRow = null;
+    let savedData = JSON.parse(localStorage.getItem("studentData")) || [];
+    const updatedData =savedData.filter(data => data.rollNo !== rollNo);
+    localStorage.setItem("studentData", JSON.stringify(updatedData));
 }
-windows.onload=loadData;
+window.onload=loadData;
 function loadData(){
-
+const savedData = JSON.parse(localStorage.getItem("studentData"))||[];
+const table = document.querySelector(".output tbody");
+savedData.forEach((data)=>{
+    const tr = document.createElement("tr");
+    tr.innerHTML= `<td>${data.name}</td><td>${data.studentRollNo}</td><td>${data.studentRanking}</td><td>${data.studentGrade}</td><td>${data.studentAttendance}%</td><td>${data.studentMarks}</td><td><button onclick="edit(this)">Edit</button></td><td><button onclick="deleteRow(this, '${data.studentRollNo}')">Delete</button></td>`;
+    table.appendChild(tr);
+})
 }
+
+
+
+
+
+
+// now we are stading at an issue of not having parsed data into the table correctly from formData
