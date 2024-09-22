@@ -26,7 +26,7 @@ function getData(){
 function saveData(formData){
     const table = document.querySelector(".output tbody");
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${formData.studentName}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td><td>${formData.studentAttendance}</td><td>${formData.studentMarks}</td><td><button id="edit" onClick="edit(this)">Edit</button></td><td><button id="delete" onClick="deleteRow(this, ${studentRollNo})">Delete</button></td>`;
+    tr.innerHTML = `<td>${formData.studentName}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td><td>${formData.studentAttendance}</td><td>${formData.studentMarks}</td><td><button id="edit" onClick="edit(this)">Edit</button></td><td><button id="delete" onClick="deleteRow(this)">Delete</button></td>`;
     table.appendChild(tr);
 }
 
@@ -58,4 +58,11 @@ function updateData(formData){
     selectedRow.cells[4].innerHTML = formData.studentAttendance;
     selectedRow.cells[5].innerHTML = formData.studentMarks;
     selectedRow = null;
+}
+function deleteRow(td){
+    selectedRow = td.parentElement.parentElement;
+    console.log(selectedRow)
+    if(alert("Are you sure you want to delete this record?")){
+        selectedRow.remove();
+    }
 }
