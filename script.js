@@ -61,8 +61,7 @@ function updateData(formData){
 }
 function deleteRow(td){
     selectedRow = td.parentElement.parentElement;
-    console.log(selectedRow)
-    if(alert("Are you sure you want to delete this record?")){
+    if(confirm("Are you sure you want to delete this record?")){
         selectedRow.remove();
     }
 }
