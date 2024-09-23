@@ -4,6 +4,16 @@ const btn = document.getElementById("submit");
 btn.addEventListener("click", (e)=>{
     e.preventDefault();
     let formData= getData();
+    const inputs = document.querySelectorAll(".container input");
+    let allFieldsFilled = true;
+    inputs.forEach(input=>{
+        if(input.value.trim()===""){
+            allFieldsFilled = false;
+        }    })
+
+        if(!allFieldsFilled){
+            alert("Kindly Fill The Required Fields");
+        }
     if(selectedRow === null){
         saveData(formData);
     }else{
@@ -62,7 +72,7 @@ function updateData(formData){
     selectedRow.cells[4].innerHTML = formData.studentAttendance;
     selectedRow.cells[5].innerHTML = formData.studentMarks;
     let savedData = JSON.parse(localStorage.getItem("studentRecord"))|| [];
-    const updatedData = savedData.filter(data=>data.studentRollNo!== formDAta["studentRollNo"]);
+    const updatedData = savedData.filter(data=>data.studentRollNo!== formData["studentRollNo"]);
     updatedData.push(formData);
     localStorage.setItem("studentRecord", JSON.stringify(updatedData));
     selectedRow = null;
