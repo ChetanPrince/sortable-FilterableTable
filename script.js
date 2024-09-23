@@ -1,5 +1,19 @@
 let selectedRow = null;
 
+
+
+window.onload = loadData;
+
+function loadData(){
+    const savedData = JSON.parse(localStorage.getItem("studentRecord"))||[];
+    const table = document.querySelector(".output tbody");
+    savedData.forEach(data=>{
+        const tr = document.createElement("tr");
+         tr.innerHTML = `<td>${data.studentName}</td><td>${data.studentRollNo}</td><td>${data.studentRanking}</td><td>${data.studentGrade}</td><td>${data.studentAttendance}</td><td>${data.studentMarks}</td><td><button id="edit" onClick="edit(this)">Edit</button></td><td><button id="delete" onClick="deleteRow(this)">Delete</button></td>`;
+         table.appendChild(tr);
+    })
+}
+
 const btn = document.getElementById("submit");
 btn.addEventListener("click", (e)=>{
     e.preventDefault();
