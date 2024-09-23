@@ -85,18 +85,49 @@ function updateData(formData){
     selectedRow.cells[3].innerHTML = formData.studentGrade;
     selectedRow.cells[4].innerHTML = formData.studentAttendance;
     selectedRow.cells[5].innerHTML = formData.studentMarks;
+
+    //  savedData idenfies if there is any existing record in local storage and then if it is not present in the system then a new empty array is placed
     let savedData = JSON.parse(localStorage.getItem("studentRecord"))|| [];
+    // updatedData filters the data for the specific row to update only the selected row and not the others data by checking what not is the roll no matching to current data 
     const updatedData = savedData.filter(data=>data.studentRollNo!== formData["studentRollNo"]);
+    // then data leaves the filtered data and updates the selected row line
     updatedData.push(formData);
+    // then localstorage sets items in the file by stringifying data into string and catches data from updatedData and saves in local storage
     localStorage.setItem("studentRecord", JSON.stringify(updatedData));
     selectedRow = null;
 }
 function deleteRow(td){
     selectedRow = td.parentElement.parentElement;
+    const rollNoToDelete = selectedRow.cells[1].innerHTML;
     if(confirm("Are you sure you want to delete this record?")){
         selectedRow.remove();
     }
     let savedData = JSON.parse(localStorage.getItem("studentRecord"))||[];
-    const updatedData = savedData.filter(data=>data.studentRollNo!==studentRollNo);
-    localStorage.setITem("studentRecord", JSON.stringify(updatedData));
+    const updatedData = savedData.filter(data=>data.studentRollNo!==rollNoToDelete);
+    localStorage.setItem("studentRecord", JSON.stringify(updatedData));
 }
+
+
+document.querySelectorAll("th").forEach((th, index)=>{
+    th.addEventListener("click", ()=>sort(index));
+})
+
+function sort(columnIndex){
+    let table = document.querySelector(".output tbody");
+    const rows = Array.from(table.rows);
+    let isAscending = table.getAttribute("data-sort-order") === "asc";
+    rows.sort((rowA, rowB)=>{
+        const cellA = rowA.cells[columnIndex].innerText.trim();
+        const cellB = rowB.cells[columnIndex].innerText.trim();
+        if(!isNaN(cellA) && !isNaN(cellB)){
+            return isAscending ? cellA-cellB: cellB-cellA;
+        }
+        return isAscending? cellA.localeCompare(cellB):cellB.localeCompare(cellA);
+        
+    });
+    table.innerHTML = "";
+    rows.forEach(row=>table.appendChild(row));
+    table.setAttribute("data-sort-order", isAscending? "desc": "asc");
+    const headers = document.querySelectorAll("th");
+    headers.forEach(header=>header.innerHTML =header.innerHTML.replace(/↑|↓/, ""));
+    headers[columnIndex].innerHTML += isAscending? "↓":"↑"}
