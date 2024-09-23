@@ -28,6 +28,10 @@ function saveData(formData){
     const tr = document.createElement("tr");
     tr.innerHTML = `<td>${formData.studentName}</td><td>${formData.studentRollNo}</td><td>${formData.studentRanking}</td><td>${formData.studentGrade}</td><td>${formData.studentAttendance}</td><td>${formData.studentMarks}</td><td><button id="edit" onClick="edit(this)">Edit</button></td><td><button id="delete" onClick="deleteRow(this)">Delete</button></td>`;
     table.appendChild(tr);
+    let savedData = JSON.parse(localStorage.getItem("studentRecord"))||[];
+    savedData.push(formData);
+    localStorage.setItem("studentRecord", JSON.stringify(savedData));
+
 }
 
 function clearData(){
@@ -57,6 +61,10 @@ function updateData(formData){
     selectedRow.cells[3].innerHTML = formData.studentGrade;
     selectedRow.cells[4].innerHTML = formData.studentAttendance;
     selectedRow.cells[5].innerHTML = formData.studentMarks;
+    let savedData = JSON.parse(localStorage.getItem("studentRecord"))|| [];
+    const updatedData = savedData.filter(data=>data.studentRollNo!== formDAta["studentRollNo"]);
+    updatedData.push(formData);
+    localStorage.setItem("studentRecord", JSON.stringify(updatedData));
     selectedRow = null;
 }
 function deleteRow(td){
@@ -64,4 +72,7 @@ function deleteRow(td){
     if(confirm("Are you sure you want to delete this record?")){
         selectedRow.remove();
     }
+    let savedData = JSON.parse(localStorage.getItem("studentRecord"))||[];
+    const updatedData = savedData.filter(data=>data.studentRollNo!==studentRollNo);
+    localStorage.setITem("studentRecord", JSON.stringify(updatedData));
 }
