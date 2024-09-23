@@ -112,6 +112,24 @@ document.querySelectorAll("th").forEach((th, index)=>{
     th.addEventListener("click", ()=>sort(index));
 })
 
+
+
+// function to sort table each index requires following steps
+// it selects the output table
+// it creates and array from the table rows
+// then it creates a variable isAScending and sets it to table.getAttribut with parameters of data-sort-order to asc
+// then it uses sort method on rows where rowa and rowb are selected
+// insider cort method cella trims the cells from row be selecting columnIndex of cells and its innerText to trim 
+
+// if statement checks if cella and cellb are not a NaN
+// and if not then it is checked if isAscending ternary operator and cella-cellb or cellb-cell a are implemented to place whichever is ascending first
+// else also does the same  by comparecella.localecompare(cellb)
+// outside sort method table innerHTML is set to empty
+// then row each returns arrow function to  table appendchild row
+// and then table attribute is set data-sort-order to and is checked if isAscending then desc as value or asc through ternary operator
+// headers are selected in headers const
+// then each header innerHTML is replace with arrows or empty strings
+//  lastly headers at column index innerHTML adds itself to ternary operator with checking if isAscending then down arrow otherwise up arrow
 function sort(columnIndex){
     let table = document.querySelector(".output tbody");
     const rows = Array.from(table.rows);
