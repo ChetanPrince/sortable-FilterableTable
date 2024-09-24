@@ -136,14 +136,15 @@ function sort(columnIndex){
         let cellA = rowA.cells[columnIndex].innerText.trim();
         let cellB = rowB.cells[columnIndex].innerText.trim();
         if(!isNaN(cellA)&&!isNaN(cellB)){
-            return isAscending? cellA-cellB : cellB-cellA
+            return isAscending? cellA-cellB : cellB-cellA;
         }return isAscending? cellA.localeCompare(cellB):cellB.localeCompare(cellA);
     });
     table.innerHTML = "";
-    table.setAttribute("data-sort-order", isAscending? "desc":"ascd");
-    let headers = document.querySelectorAll(".output tbody th");
-    headers.forEach((header)=>{
-        header.innerHTML = header.innerHTML.replace("/↓|↑/")
-    })
+    rows.forEach(row=>table.appendChild(row));
+    table.setAttribute("data-sort-order", isAscending? "desc":"asc");
+    let headers = document.querySelectorAll("th");
+    headers.forEach(header=>
+        header.innerHTML = header.innerHTML.replace(/↓|↑/, ""));
+    headers[columnIndex].innerHTML += isAscending? " ↓":" ↑";
 
 }
