@@ -112,39 +112,38 @@ document.querySelectorAll("th").forEach((th, index)=>{
     th.addEventListener("click", ()=>sort(index));
 })
 
-// function sort(columnIndex){
-//     let table = document.querySelector(".output tbody");
-//     const rows = Array.from(table.rows);
-//     let isAscending = table.getAttribute("data-sort-order") === "asc";
-//     rows.sort((rowA, rowB)=>{
-//         const cellA = rowA.cells[columnIndex].innerText.trim();
-//         const cellB = rowB.cells[columnIndex].innerText.trim();
-//         if(!isNaN(cellA) && !isNaN(cellB)){
-//             return isAscending ? cellA-cellB: cellB-cellA;
-//         }
-//         return isAscending? cellA.localeCompare(cellB):cellB.localeCompare(cellA);     });
-//     table.innerHTML = "";
-//     rows.forEach(row=>table.appendChild(row));
-//     table.setAttribute("data-sort-order", isAscending? "desc": "asc");
-//     const headers = document.querySelectorAll("th");
-//     headers.forEach(header=>header.innerHTML =header.innerHTML.replace(/↑|↓/, ""));
-//     headers[columnIndex].innerHTML += isAscending? "↓":"↑"};
 
-    function sort(columnIndex){
-        let table = document.querySelector(".output tbody");
-        let rows = Array.from(table.rows);
-        let isAscending = table.getAttribute("data-sort-order") === "asc";
-        rows.sort((rowA, rowB)=>{
-            let cellA = rowA.cells[columnIndex].innerText.trim();
-            let cellB = rowB.cells[columnIndex].innerText.trim();
-            if(!isNaN(cellA) && !isNaN(cellB)){
-            return isAscending? cellA - cellB : cellB-cellA;
-            }
-            return isAscending? cellA.localeCompare(cellB):cellB.localeCompare(cellA);
-        });
-        table.innerHTML = "";
-        rows.forEach((row)=>{table.appendChild(row)});
-        table.setAttribute("data-sort-order", isAscending? "desc":"asc");
-        const headers = document.querySelectorAll("th");
-        headers.forEach(header=>header.innerHTML = header.innerHTML.replace(/↑|↓/, ""));
-        headers[columnIndex].innerHTML += isAscending? "↑":"↓" };
+// sort function
+// table variable
+// row array
+// isAscending data attribute
+// rows sort with row a and row b
+// inside sort cell of rowcolumnindex text trim
+// if is a number then minus
+// if is not a number then locale compare
+// outside sort table innerhtml blank set
+// rows each is appended intable
+// set attribute is set if is ascending to desc or asc
+// header variable selected th
+// then for each header innerHTML reokace arrows
+// headers colIndex innerhtml is added with a ternary operator of is Ascending
+
+function sort(columnIndex){
+    let table = document.querySelector(".output tbody");
+    let rows = Array.from(table.rows);
+    let isAscending  =  table.getAttribute("data-sort-order") === "asc";
+    rows.sort((rowA, rowB)=>{
+        let cellA = rowA.cells[columnIndex].innerText.trim();
+        let cellB = rowB.cells[columnIndex].innerText.trim();
+        if(!isNaN(cellA)&&!isNaN(cellB)){
+            return isAscending? cellA-cellB : cellB-cellA
+        }return isAscending? cellA.localeCompare(cellB):cellB.localeCompare(cellA);
+    });
+    table.innerHTML = "";
+    table.setAttribute("data-sort-order", isAscending? "desc":"ascd");
+    let headers = document.querySelectorAll(".output tbody th");
+    headers.forEach((header)=>{
+        header.innerHTML = header.innerHTML.replace("/↓|↑/")
+    })
+
+}
