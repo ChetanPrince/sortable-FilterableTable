@@ -131,20 +131,12 @@ document.querySelectorAll("th").forEach((th, index)=>{
 function sort(columnIndex){
     let table = document.querySelector(".output tbody");
     let rows = Array.from(table.rows);
-    let isAscending  =  table.getAttribute("data-sort-order") === "asc";
+    let isAscending = table.getAttribute("data-sort-order") === "asc";
     rows.sort((rowA, rowB)=>{
-        let cellA = rowA.cells[columnIndex].innerText.trim();
-        let cellB = rowB.cells[columnIndex].innerText.trim();
-        if(!isNaN(cellA)&&!isNaN(cellB)){
-            return isAscending? cellA-cellB : cellB-cellA;
-        }return isAscending? cellA.localeCompare(cellB):cellB.localeCompare(cellA);
-    });
-    table.innerHTML = "";
-    rows.forEach(row=>table.appendChild(row));
-    table.setAttribute("data-sort-order", isAscending? "desc":"asc");
-    let headers = document.querySelectorAll("th");
-    headers.forEach(header=>
-        header.innerHTML = header.innerHTML.replace(/↓|↑/, ""));
-    headers[columnIndex].innerHTML += isAscending? " ↓":" ↑";
-
+        let cellA = rowA[columnIndex].innerText.trim();
+        let cellB = rowB[columnIndex].innerText.trim();
+        if(!isNaN(cellA) && !isNaN(cellB)){
+            
+        }
+    })
 }
