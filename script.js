@@ -112,21 +112,16 @@ document.querySelectorAll("th").forEach((th, index)=>{
     th.addEventListener("click", ()=>sort(index));
 })
 
+// the data has to be sorted for that firstly a location has to be chosen where data is then if that is in rows with different columns in that case rows from that table has to be placed in new array
+// a new array is formed then because the data would be unorganized and then it has to be tested if it is higher or lower than previous array index
+//  a variable will check if the data sort order is in ascending form and would give a bolean statement that has to be used for up and down arrows
 
-// sort function
-// table variable
-// row array
-// isAscending data attribute
-// rows sort with row a and row b
-// inside sort cell of rowcolumnindex text trim
-// if is a number then minus
-// if is not a number then locale compare
-// outside sort table innerhtml blank set
-// rows each is appended intable
-// set attribute is set if is ascending to desc or asc
-// header variable selected th
-// then for each header innerHTML reokace arrows
-// headers colIndex innerhtml is added with a ternary operator of is Ascending
+// rows has to be tested with sort method where current and next rows are selected. the selected rows will have an index and its innertext has to be stored in a variable after trimming extra spaces
+// those two variable that stores values of rowa and rowb column index are checked if are numbers then the current one is reduced from the next after checking whether isAscending in nature and if not numbers then locale compare method of arrays has to be used where cell a compares its locale to cell b or vice versa if are not Ascending
+//  after sorting internally the data has to be cleared inside table before updating it with sorted and then table set attribute if isAscending to desc or asc
+// then finally selecting headers and for each header innerHTML is returned with replacing up or down arrow on sort click
+// final step sets innerHTML of columnIndex with adding previous data and dan arrow depending on if isAscending or descending
+
 
 function sort(columnIndex){
     let table = document.querySelector(".output tbody");
@@ -146,3 +141,5 @@ function sort(columnIndex){
     headers.forEach((header)=>header.innerHTML=header.innerHTML.replace(/↑ |↓/, ""));
     headers[columnIndex].innerHTML += isAscending? "↓":"↑";
 }
+
+
