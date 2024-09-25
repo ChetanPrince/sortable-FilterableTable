@@ -112,16 +112,6 @@ document.querySelectorAll("th").forEach((th, index)=>{
     th.addEventListener("click", ()=>sort(index));
 })
 
-// the data has to be sorted for that firstly a location has to be chosen where data is then if that is in rows with different columns in that case rows from that table has to be placed in new array
-// a new array is formed then because the data would be unorganized and then it has to be tested if it is higher or lower than previous array index
-//  a variable will check if the data sort order is in ascending form and would give a bolean statement that has to be used for up and down arrows
-
-// rows has to be tested with sort method where current and next rows are selected. the selected rows will have an index and its innertext has to be stored in a variable after trimming extra spaces
-// those two variable that stores values of rowa and rowb column index are checked if are numbers then the current one is reduced from the next after checking whether isAscending in nature and if not numbers then locale compare method of arrays has to be used where cell a compares its locale to cell b or vice versa if are not Ascending
-//  after sorting internally the data has to be cleared inside table before updating it with sorted and then table set attribute if isAscending to desc or asc
-// then finally selecting headers and for each header innerHTML is returned with replacing up or down arrow on sort click
-// final step sets innerHTML of columnIndex with adding previous data and dan arrow depending on if isAscending or descending
-
 
 function sort(columnIndex){
     let table = document.querySelector(".output tbody");
@@ -131,15 +121,34 @@ function sort(columnIndex){
         let cellA = rowA.cells[columnIndex].innerText.trim();
         let cellB = rowB.cells[columnIndex].innerText.trim();
         if(!isNaN(cellA) && !isNaN(cellB)){
-            return isAscending?cellA-cellB:cellB-cellA;
+            return isAscending ? cellA - cellB : cellB - cellA;
         }return isAscending? cellA.localeCompare(cellB):cellB.localeCompare(cellA);
-    })
+    });
     table.innerHTML = "";
     rows.forEach(row=>table.appendChild(row));
-    table.setAttribute("data-sort-order", isAscending? "desc": "asc");
+    table.setAttribute("data-sort-order", isAscending ? "desc": "asc");
     let headers = document.querySelectorAll("th");
-    headers.forEach((header)=>header.innerHTML=header.innerHTML.replace(/↑ |↓/, ""));
-    headers[columnIndex].innerHTML += isAscending? "↓":"↑";
+    headers.forEach(header=>
+        header.innerHTML = header.innerHTML.replace(/↑|↓/, ""));
+    headers[columnIndex].innerHTML += isAscending? " ↓" : " ↑";
 }
 
-
+document.getElementById("filter").addEventListener("click", filter);
+function filterData(){
+    const filterMap = {
+        "nameFilter":0,
+        "rollNoFilter":1,
+        "rankingFilter":2,
+        "gradeFilter":3,
+        "attendanceFilter":4,
+        "marksFilter":5
+    };
+    const inputs = {
+        nameFiler: document.getElementById("studentName").value.toLowerCase(),
+        rollNoFiler: document.getElementById("studentRollNo").value.toLowerCase(),
+        rankingFiler: document.getElementById("studentRanking").value.toLowerCase(),
+        gradefiler: document.getElementById("studentGrade").value.toLowerCase(),
+        attendanceFiler: document.getElementById("studentAttendance").value.toLowerCase(),
+        marksFiler: document.getElementById("studentMarks").value.toLowerCase(),
+    }
+}
