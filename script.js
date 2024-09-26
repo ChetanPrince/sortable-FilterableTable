@@ -150,5 +150,10 @@ function filterData(){
         gradefiler: document.getElementById("studentGrade").value.toLowerCase(),
         attendanceFiler: document.getElementById("studentAttendance").value.toLowerCase(),
         marksFiler: document.getElementById("studentMarks").value.toLowerCase()
-    }
+    };
+    const rows = document.querySelectorAll(".output tbody tr");
+
+    rows.forEach((row)=>{
+        const rowData = Array.from(row.cells).map(cell=>cell.innerText.toLowerCase());
+    })
 }
