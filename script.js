@@ -149,6 +149,6 @@ function filterData(){
         rankingFiler: document.getElementById("studentRanking").value.toLowerCase(),
         gradefiler: document.getElementById("studentGrade").value.toLowerCase(),
         attendanceFiler: document.getElementById("studentAttendance").value.toLowerCase(),
-        marksFiler: document.getElementById("studentMarks").value.toLowerCase(),
+        marksFiler: document.getElementById("studentMarks").value.toLowerCase()
     }
 }
