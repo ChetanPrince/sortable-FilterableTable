@@ -143,5 +143,14 @@ const filterMap ={
     "gradeFilter":3,
     "attendanceFilter":4,
     "marksFilter":5
-}
+};
+const inputs={
+    nameFilter: document.getElementById("studentName").value.toLowerCase(),
+    rollNoFilter: document.getElementById("studentRollNo").value.toLowerCase(),
+    rankingFilter: document.getElementById("studentRanking").value.toLowerCase(),
+    gradeFilter: document.getElementById("studentGrade").value.toLowerCase(),
+    attendanceFilter: document.getElementById("studentAttendance").value.toLowerCase(),
+    marksFilter: document.getElementById("studentMarks").value.toLowerCase()
+};
+const rows = document.querySelectorAll(".output tbody tr");
 }
