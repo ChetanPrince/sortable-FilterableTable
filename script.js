@@ -133,34 +133,3 @@ function sort(columnIndex){
     headers[columnIndex].innerHTML += isAscending? " ↓" : " ↑";
 }
 
-document.getElementById("filter").addEventListener("click", filter);
-function filterData(){
-    const filterMap = {
-        "nameFilter":0,
-        "rollNoFilter":1,
-        "rankingFilter":2,
-        "gradeFilter":3,
-        "attendanceFilter":4,
-        "marksFilter":5
-    };
-    const inputs = {
-        nameFiler: document.getElementById("studentName").value.toLowerCase(),
-        rollNoFiler: document.getElementById("studentRollNo").value.toLowerCase(),
-        rankingFiler: document.getElementById("studentRanking").value.toLowerCase(),
-        gradefiler: document.getElementById("studentGrade").value.toLowerCase(),
-        attendanceFiler: document.getElementById("studentAttendance").value.toLowerCase(),
-        marksFiler: document.getElementById("studentMarks").value.toLowerCase()
-    };
-    const rows = document.querySelectorAll(".output tbody tr");
-
-    rows.forEach((row)=>{
-        const rowData = Array.from(row.cells).map(cell=>cell.innerText.toLowerCase());
-        let matchesFilter = true;
-        for(let filter in inputs){
-            const inputValue = inputs[filter];
-            if(inputValue !== ""){
-                const columnIndex = filterMap[filter];
-            }
-        }
-    })
-}
