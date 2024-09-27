@@ -136,5 +136,12 @@ function sort(columnIndex){
 document.getElementById("filter").addEventListener("click", filterData);
 
 function filterData(){
-
+const filterMap ={
+    "nameFilter":0,
+    "rollNoFilter":1,
+    "rankingFilter":2,
+    "gradeFilter":3,
+    "attendanceFilter":4,
+    "marksFilter":5
+}
 }
