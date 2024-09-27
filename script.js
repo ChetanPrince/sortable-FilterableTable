@@ -133,3 +133,8 @@ function sort(columnIndex){
     headers[columnIndex].innerHTML += isAscending? " ↓" : " ↑";
 }
 
+document.getElementById("filter").addEventListener("click", filterData);
+
+function filterData(){
+
+}
