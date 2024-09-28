@@ -157,6 +157,12 @@ rows.forEach((row)=>{
     const rowData = Array.from(row.cells).map(cell=>cell.innerText.toLowerCase());
 
     let matchesFilter = true;
-    
+    for(let filter in inputs){
+        const inputValue = inputs[filter];
+        if(inputValue !== ""){
+            const columnIndex = filterMap[filter];
+            matchesFilter = matchesFilter && rowData[columnIndex].includes(inputValue);
+        }
+    }
 })
 }
