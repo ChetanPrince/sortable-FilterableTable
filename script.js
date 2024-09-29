@@ -164,5 +164,6 @@ rows.forEach((row)=>{
             matchesFilter = matchesFilter && rowData[columnIndex].includes(inputValue);
         }
     }
+    row.computedStyleMap.display = matchesFilter ? "": "none";
 })
 }
